@@ -78,7 +78,7 @@ def plot_four_roc(ytrue,yprobas,model_names,name = "four_model_roc_curve"):
     plt.ylim([0.0, 1.05])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.title(name+' roc curve')
+    plt.title(name)
     plt.legend(loc="lower right")
     
     path = 'roc_image'
