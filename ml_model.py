@@ -296,6 +296,7 @@ if __name__ == '__main__':
     gbdt_probas = gbdt_model.predict_proba(X_test)[:,1]
     stack_probas = stack_model.predict_proba(X_test)[:,1]
     plot_four_roc(y_test,[rf_probas,xgb_probas,gbdt_probas,stack_probas],\
+                  model_names = ['random forest','xgboost','gbdt','stacking model'],\
                   name = "four_model_roc")
 # =============================================================================
 #     #extra_tree

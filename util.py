@@ -62,16 +62,16 @@ def plot_roc(ytrue,yproba,name):
     plt.savefig(os.path.join(path,name+".png"))
 #    plt.show()
     
-def plot_four_roc(ytrue,yprobas,name = "four_model_roc_curve"):    
+def plot_four_roc(ytrue,yprobas,model_names,name = "four_model_roc_curve"):    
     plt.figure()    
     lw = 2  #线段的宽度
     plt.figure(figsize=(10,10))
     colors = ['cyan','yellow','red','blue']
-    for yproba,color in zip(yprobas,colors):
+    for yproba,model_name,color in zip(yprobas,model_names,colors):
         fpr,tpr,threshold = roc_curve(ytrue,yproba) 
         roc_auc = auc(fpr,tpr)
         plt.plot(fpr, tpr, color=color,
-                 lw=lw, label='ROC curve (area = %0.3f)' % roc_auc) ###假正率为横坐标，真正率为纵坐标做曲线
+                 lw=lw, label='{} AUC : {:.3f}'.format(model_name,roc_auc)) ###假正率为横坐标，真正率为纵坐标做曲线
 
     plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
     plt.xlim([0.0, 1.0])
