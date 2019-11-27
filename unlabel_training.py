@@ -38,7 +38,6 @@ test_x = test_x.iloc[:,1:-1]
 # del unlabeled_x
 # =============================================================================
 
-
 # =============================================================================
 # stacked_averaged_models = StackingAveragedModels(base_models = (xgb_model, GBoost, rf_model),
 #                                              meta_model = lr_model)

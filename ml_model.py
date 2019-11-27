@@ -297,7 +297,9 @@ if __name__ == '__main__':
     stack_probas = stack_model.predict_proba(X_test)[:,1]
     plot_four_roc(y_test,[rf_probas,xgb_probas,gbdt_probas,stack_probas],\
                   model_names = ['random forest','xgboost','gbdt','stacking model'],\
-                  name = "four_model_roc")
+                  name = "ROC curve based on the accepted")
+    
+    #预测样本
 # =============================================================================
 #     #extra_tree
 #     adj_dict = {'max_depth':(5,50),'max_features':(0.5,1.0),'min_samples_leaf':(5,30),
@@ -318,8 +320,4 @@ if __name__ == '__main__':
 #     svm_model.fit(X_train,y_train)
 #     svm_model._print_analyse(X_test,y_test,save_img = True)
 # =============================================================================
-    
-    
-
-    
-    
+        
