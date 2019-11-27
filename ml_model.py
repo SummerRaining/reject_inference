@@ -294,8 +294,9 @@ if __name__ == '__main__':
     rf_probas = rf_model.predict_proba(X_test)[:,1]
     xgb_probas = xgb_model.predict_proba(X_test)[:,1]
     gbdt_probas = gbdt_model.predict_proba(X_test)[:,1]
+    ada_probas = ada_model.predict_proba(X_test)[:,1]
     stack_probas = stack_model.predict_proba(X_test)[:,1]
-    plot_four_roc(y_test,[rf_probas,xgb_probas,gbdt_probas,stack_probas],\
+    plot_four_roc(y_test,[rf_probas,xgb_probas,ada_probas,stack_probas],\
                   model_names = ['random forest','xgboost','gbdt','stacking model'],\
                   name = "ROC curve based on the accepted")
     
