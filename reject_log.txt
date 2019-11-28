@@ -1,0 +1,48 @@
+
+ load data from ../intermediate/washed_data.pkl
+X_train shape is (95700, 2000)
+y_train shape is (95700,)
+X_test shape is (4300, 2000)
+y_test shape is (4300,)
+loading model from file
+********** reject_lightgbm **********
+预测样本数为4300. 
+AUC为0.6659
+准确率accuracy为90.116%
+第一类错误样本有424,第一类错误率为9.860%
+第二类错误样本有1,第二类错误率为0.023%
+loading model from file
+********** reject_adaboost **********
+预测样本数为4300. 
+AUC为0.6750
+准确率accuracy为90.000%
+第一类错误样本有430,第一类错误率为10.000%
+第二类错误样本有0,第二类错误率为0.000%
+loading model from file
+********** reject_gbdt **********
+预测样本数为4300. 
+AUC为0.6763
+准确率accuracy为90.116%
+第一类错误样本有424,第一类错误率为9.860%
+第二类错误样本有1,第二类错误率为0.023%
+loading model from file
+********** reject_rf **********
+预测样本数为4300. 
+AUC为0.6563
+准确率accuracy为90.000%
+第一类错误样本有430,第一类错误率为10.000%
+第二类错误样本有0,第二类错误率为0.000%
+loading model from file
+********** reject_xgboost **********
+预测样本数为4300. 
+AUC为0.6522
+准确率accuracy为90.093%
+第一类错误样本有425,第一类错误率为9.884%
+第二类错误样本有1,第二类错误率为0.023%
+load stacking model from ../models/reject_stacking_model
+********** reject_stacking **********
+预测样本数为4300. 
+AUC为0.6745
+准确率accuracy为90.047%
+第一类错误样本有428,第一类错误率为9.953%
+第二类错误样本有0,第二类错误率为0.000%

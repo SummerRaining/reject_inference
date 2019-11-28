@@ -12,6 +12,7 @@ import os
 import matplotlib
 import numpy as np
 matplotlib.use('Agg')
+#matplotlib.use("Qt5Agg")
 
 def print_analyse(ytrue,yproba,name):
     '''

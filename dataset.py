@@ -132,6 +132,7 @@ if __name__ == '__main__':
     print("y_train shape is {}".format(y_train.shape))
     print("X_test shape is {}".format(X_test.shape))
     print("y_test shape is {}".format(y_test.shape))
+    
 # =============================================================================
 #     #这个里面的文件是后续添加的，用于读取文件并统计三个数据集中的违约率。
 #     data1 = pd.read_csv('train/train_1.txt',sep = '\t')

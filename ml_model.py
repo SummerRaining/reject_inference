@@ -301,6 +301,17 @@ if __name__ == '__main__':
                   name = "ROC curve based on the accepted")
     
     #预测样本
+    reject_probas = stack_model.predict_proba(reject_sample.values[:,2:])[:,1]
+    reject_predict = np.array(reject_probas>0.5,dtype = np.int32)
+    pickle.dump(reject_predict,open("../intermediate/reject_predict",'wb'))
+    print(np.sum(reject_predict))
+    
+    import matplotlib
+    matplotlib.use("Qt5Agg")
+    import matplotlib.pyplot as plt
+    plt.hist(reject_probas,bins=30)
+    plt.title("stacking predict probabilitys!")
+    plt.show()
 # =============================================================================
 #     #extra_tree
 #     adj_dict = {'max_depth':(5,50),'max_features':(0.5,1.0),'min_samples_leaf':(5,30),
