@@ -6,7 +6,7 @@ Created on Tue Nov 26 21:51:49 2019
 @author: tunan
 """
 
-from sklearn.metrics import confusion_matrix,roc_curve, auc,roc_auc_score,f1_score
+from sklearn.metrics import confusion_matrix,roc_curve, auc,roc_auc_score,f1_score,fbeta_score
 import matplotlib.pyplot as plt 
 import os
 import matplotlib
@@ -15,7 +15,7 @@ matplotlib.use('Agg')
 #matplotlib.use("Qt5Agg")
 
 def find_best_threshold(ytrue,yproba):
-    best_F1 = 0
+    best_F2 = 0
     best_threshold = 0
     for threshold in np.arange(0.01,1,0.01):
         ypred = yproba>threshold        
@@ -23,10 +23,10 @@ def find_best_threshold(ytrue,yproba):
         if np.sum(ypred) == 0:
             break
         
-        #计算当前F1
-        F1 = f1_score(ytrue,ypred)
-        if best_F1<F1:
-            best_F1 = F1
+        #计算当前F2
+        F2 = fbeta_score(ytrue,ypred,beta=2.)
+        if best_F2<F2:
+            best_F2 = F2
             best_threshold = threshold    
     return best_threshold
 
@@ -53,13 +53,14 @@ def print_analyse(ytrue,yproba,name):
     
     precision = TP/(TP+FP)
     recall = TP/(TP+FN)
-    F1 = 2*recall*precision/(recall+precision)
+#    F1 = 2*recall*precision/(recall+precision)
+    F2 = 5*recall*precision/(recall+4*precision)
     print("\n\n"+"*"*10+" {} ".format(name)+"*"*10)
     print("预测样本数为{}. \nAUC为{:.4f}".format(len(ytrue),roc_auc))
     print("准确率accuracy为{:.3f}%".format((con_max[1,1]+con_max[0,0])/len(ytrue)*100))
     print("第一类错误样本有{},第一类错误率为{:.3f}%".format(FN,FN/(FN+TP)*100))
     print("第二类错误样本有{},第二类错误率为{:.3f}%".format(FP,FP/(FP+TN)*100))
-    print("精确率precisoin为{:.3f}%,召回率recall为{:.3f}%，F1为{:.3}% \n".format(recall*100,precision*100,F1*100))
+    print("精确率precisoin为{:.3f}%,召回率recall为{:.3f}%，F2为{:.3}% \n".format(precision*100,recall*100,F2*100))
     print("TP:{}\tTN:{},FN:{},FP:{}\n".format(TP,TN,FN,FP))
     
     #绘制roc曲线
