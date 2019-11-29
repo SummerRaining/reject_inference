@@ -6,13 +6,29 @@ Created on Tue Nov 26 21:51:49 2019
 @author: tunan
 """
 
-from sklearn.metrics import confusion_matrix,roc_curve, auc,roc_auc_score
+from sklearn.metrics import confusion_matrix,roc_curve, auc,roc_auc_score,f1_score
 import matplotlib.pyplot as plt 
 import os
 import matplotlib
 import numpy as np
 matplotlib.use('Agg')
 #matplotlib.use("Qt5Agg")
+
+def find_best_threshold(ytrue,yproba):
+    best_F1 = 0
+    best_threshold = 0
+    for threshold in np.arange(0.01,1,0.01):
+        ypred = yproba>threshold        
+        #所有预测值都为0了，阈值继续增大也是0.
+        if np.sum(ypred) == 0:
+            break
+        
+        #计算当前F1
+        F1 = f1_score(ytrue,ypred)
+        if best_F1<F1:
+            best_F1 = F1
+            best_threshold = threshold    
+    return best_threshold
 
 def print_analyse(ytrue,yproba,name):
     '''
@@ -25,8 +41,10 @@ def print_analyse(ytrue,yproba,name):
 
     #计算auc的值
     roc_auc = roc_auc_score(ytrue,yproba)
+    threshold = find_best_threshold(ytrue,yproba)
+    ypred = yproba>threshold
+    
     #计算混淆矩阵和第一二类错误率，准确率
-    ypred = yproba>0.5
     con_max = confusion_matrix(ytrue,ypred)
     TN = con_max[0,0]
     TP = con_max[1,1]
@@ -46,7 +64,7 @@ def print_analyse(ytrue,yproba,name):
     
     #绘制roc曲线
     plot_roc(ytrue,yproba,name)
-    
+        
 def plot_roc(ytrue,yproba,name):
     #使用roc_curve，计算真阳率和假阳率
     fpr,tpr,threshold = roc_curve(ytrue,yproba) 

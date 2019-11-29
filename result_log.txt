@@ -10,12 +10,12 @@ loading lightgbm model from file
 ********** lightgbm **********
 预测样本数为4300. 
 AUC为0.7956
-准确率accuracy为90.000%
-第一类错误样本有429,第一类错误率为99.767%
-第二类错误样本有1,第二类错误率为0.026%
-精确率precisoin为0.233%,召回率recall为50.000%，F1为0.463% 
+准确率accuracy为86.860%
+第一类错误样本有246,第一类错误率为57.209%
+第二类错误样本有319,第二类错误率为8.243%
+精确率precisoin为42.791%,召回率recall为36.581%，F1为39.4% 
 
-TP:1	TN:3869,FN:429,FP:1
+TP:184	TN:3551,FN:246,FP:319
 
 loading adaboost model from file
 
@@ -23,12 +23,12 @@ loading adaboost model from file
 ********** adaboost **********
 预测样本数为4300. 
 AUC为0.7930
-准确率accuracy为90.116%
-第一类错误样本有424,第一类错误率为98.605%
-第二类错误样本有1,第二类错误率为0.026%
-精确率precisoin为1.395%,召回率recall为85.714%，F1为2.75% 
+准确率accuracy为82.279%
+第一类错误样本有207,第一类错误率为48.140%
+第二类错误样本有555,第二类错误率为14.341%
+精确率precisoin为51.860%,召回率recall为28.663%，F1为36.9% 
 
-TP:6	TN:3869,FN:424,FP:1
+TP:223	TN:3315,FN:207,FP:555
 
 loading gbdt model from file
 
@@ -36,12 +36,12 @@ loading gbdt model from file
 ********** gbdt **********
 预测样本数为4300. 
 AUC为0.8078
-准确率accuracy为90.209%
-第一类错误样本有406,第一类错误率为94.419%
-第二类错误样本有15,第二类错误率为0.388%
-精确率precisoin为5.581%,召回率recall为61.538%，F1为10.2% 
+准确率accuracy为83.791%
+第一类错误样本有197,第一类错误率为45.814%
+第二类错误样本有500,第二类错误率为12.920%
+精确率precisoin为54.186%,召回率recall为31.787%，F1为40.1% 
 
-TP:24	TN:3855,FN:406,FP:15
+TP:233	TN:3370,FN:197,FP:500
 
 loading rf model from file
 
@@ -49,12 +49,12 @@ loading rf model from file
 ********** rf **********
 预测样本数为4300. 
 AUC为0.7599
-准确率accuracy为90.000%
-第一类错误样本有430,第一类错误率为100.000%
-第二类错误样本有0,第二类错误率为0.000%
-精确率precisoin为0.000%,召回率recall为nan%，F1为nan% 
+准确率accuracy为80.721%
+第一类错误样本有220,第一类错误率为51.163%
+第二类错误样本有609,第二类错误率为15.736%
+精确率precisoin为48.837%,召回率recall为25.641%，F1为33.6% 
 
-TP:0	TN:3870,FN:430,FP:0
+TP:210	TN:3261,FN:220,FP:609
 
 loading xgboost model from file
 
@@ -62,12 +62,12 @@ loading xgboost model from file
 ********** xgboost **********
 预测样本数为4300. 
 AUC为0.7934
-准确率accuracy为90.233%
-第一类错误样本有414,第一类错误率为96.279%
-第二类错误样本有6,第二类错误率为0.155%
-精确率precisoin为3.721%,召回率recall为72.727%，F1为7.08% 
+准确率accuracy为85.977%
+第一类错误样本有248,第一类错误率为57.674%
+第二类错误样本有355,第二类错误率为9.173%
+精确率precisoin为42.326%,召回率recall为33.892%，F1为37.6% 
 
-TP:16	TN:3864,FN:414,FP:6
+TP:182	TN:3515,FN:248,FP:355
 
 load stacking model from ../models/stacking_model
 
@@ -75,10 +75,10 @@ load stacking model from ../models/stacking_model
 ********** stacking **********
 预测样本数为4300. 
 AUC为0.8077
-准确率accuracy为90.140%
-第一类错误样本有422,第一类错误率为98.140%
-第二类错误样本有2,第二类错误率为0.052%
-精确率precisoin为1.860%,召回率recall为80.000%，F1为3.64% 
+准确率accuracy为87.000%
+第一类错误样本有230,第一类错误率为53.488%
+第二类错误样本有329,第二类错误率为8.501%
+精确率precisoin为46.512%,召回率recall为37.807%，F1为41.7% 
 
-TP:8	TN:3868,FN:422,FP:2
+TP:200	TN:3541,FN:230,FP:329
 
