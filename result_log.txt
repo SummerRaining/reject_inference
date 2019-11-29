@@ -4,45 +4,81 @@ X_train shape is (29165, 2000)
 y_train shape is (29165,)
 X_test shape is (4300, 2000)
 y_test shape is (4300,)
-loading model from file
+loading lightgbm model from file
+
+
 ********** lightgbm **********
 预测样本数为4300. 
 AUC为0.7956
 准确率accuracy为90.000%
-第一类错误样本有429,第一类错误率为9.977%
-第二类错误样本有1,第二类错误率为0.023%
-loading model from file
+第一类错误样本有429,第一类错误率为99.767%
+第二类错误样本有1,第二类错误率为0.026%
+精确率precisoin为0.233%,召回率recall为50.000%，F1为0.463% 
+
+TP:1	TN:3869,FN:429,FP:1
+
+loading adaboost model from file
+
+
 ********** adaboost **********
 预测样本数为4300. 
 AUC为0.7930
 准确率accuracy为90.116%
-第一类错误样本有424,第一类错误率为9.860%
-第二类错误样本有1,第二类错误率为0.023%
-loading model from file
+第一类错误样本有424,第一类错误率为98.605%
+第二类错误样本有1,第二类错误率为0.026%
+精确率precisoin为1.395%,召回率recall为85.714%，F1为2.75% 
+
+TP:6	TN:3869,FN:424,FP:1
+
+loading gbdt model from file
+
+
 ********** gbdt **********
 预测样本数为4300. 
 AUC为0.8078
 准确率accuracy为90.209%
-第一类错误样本有406,第一类错误率为9.442%
-第二类错误样本有15,第二类错误率为0.349%
-loading model from file
+第一类错误样本有406,第一类错误率为94.419%
+第二类错误样本有15,第二类错误率为0.388%
+精确率precisoin为5.581%,召回率recall为61.538%，F1为10.2% 
+
+TP:24	TN:3855,FN:406,FP:15
+
+loading rf model from file
+
+
 ********** rf **********
 预测样本数为4300. 
 AUC为0.7599
 准确率accuracy为90.000%
-第一类错误样本有430,第一类错误率为10.000%
+第一类错误样本有430,第一类错误率为100.000%
 第二类错误样本有0,第二类错误率为0.000%
-loading model from file
+精确率precisoin为0.000%,召回率recall为nan%，F1为nan% 
+
+TP:0	TN:3870,FN:430,FP:0
+
+loading xgboost model from file
+
+
 ********** xgboost **********
 预测样本数为4300. 
 AUC为0.7934
 准确率accuracy为90.233%
-第一类错误样本有414,第一类错误率为9.628%
-第二类错误样本有6,第二类错误率为0.140%
+第一类错误样本有414,第一类错误率为96.279%
+第二类错误样本有6,第二类错误率为0.155%
+精确率precisoin为3.721%,召回率recall为72.727%，F1为7.08% 
+
+TP:16	TN:3864,FN:414,FP:6
+
 load stacking model from ../models/stacking_model
+
+
 ********** stacking **********
 预测样本数为4300. 
 AUC为0.8077
 准确率accuracy为90.140%
-第一类错误样本有422,第一类错误率为9.814%
-第二类错误样本有2,第二类错误率为0.047%
+第一类错误样本有422,第一类错误率为98.140%
+第二类错误样本有2,第二类错误率为0.052%
+精确率precisoin为1.860%,召回率recall为80.000%，F1为3.64% 
+
+TP:8	TN:3868,FN:422,FP:2
+

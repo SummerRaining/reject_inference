@@ -111,7 +111,7 @@ class ml_model(object):
         if not os.path.exists(self.model_path):
             self.feature = X_train
             self.label = y_train
-            print('start training model!')
+            print('start training {} model!'.format(self.name))
             self.select_params()
             model = self.base_model(**self.result['params'])
             model.fit(X_train,y_train)
@@ -119,7 +119,7 @@ class ml_model(object):
             self.feature = None
             self.label = None
         else:
-            print("loading model from file")
+            print("loading {} model from file".format(self.name))
             model = pickle.load(open(self.model_path,'rb'))
         self.model = model
 
@@ -300,18 +300,20 @@ if __name__ == '__main__':
                   model_names = ['random forest','xgboost','gbdt','stacking model'],\
                   name = "ROC curve based on the accepted")
     
-    #预测样本
-    reject_probas = stack_model.predict_proba(reject_sample.values[:,2:])[:,1]
-    reject_predict = np.array(reject_probas>0.5,dtype = np.int32)
-    pickle.dump(reject_predict,open("../intermediate/reject_predict",'wb'))
-    print(np.sum(reject_predict))
-    
-    import matplotlib
-    matplotlib.use("Qt5Agg")
-    import matplotlib.pyplot as plt
-    plt.hist(reject_probas,bins=30)
-    plt.title("stacking predict probabilitys!")
-    plt.show()
+# =============================================================================
+#     #预测样本
+#     reject_probas = stack_model.predict_proba(reject_sample.values[:,2:])[:,1]
+#     reject_predict = np.array(reject_probas>0.5,dtype = np.int32)
+#     pickle.dump(reject_predict,open("../intermediate/reject_predict",'wb'))
+#     print(np.sum(reject_predict))
+#     
+#     import matplotlib
+#     matplotlib.use("Qt5Agg")
+#     import matplotlib.pyplot as plt
+#     plt.hist(reject_probas,bins=30)
+#     plt.title("stacking predict probabilitys!")
+#     plt.show()
+# =============================================================================
 # =============================================================================
 #     #extra_tree
 #     adj_dict = {'max_depth':(5,50),'max_features':(0.5,1.0),'min_samples_leaf':(5,30),

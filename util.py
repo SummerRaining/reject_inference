@@ -28,13 +28,21 @@ def print_analyse(ytrue,yproba,name):
     #计算混淆矩阵和第一二类错误率，准确率
     ypred = yproba>0.5
     con_max = confusion_matrix(ytrue,ypred)
-    type1error = con_max[1,0]
-    type2error = con_max[0,1]
-    print("*"*10+" {} ".format(name)+"*"*10)
+    TN = con_max[0,0]
+    TP = con_max[1,1]
+    FN = con_max[1,0]
+    FP = con_max[0,1]
+    
+    precision = TP/(TP+FP)
+    recall = TP/(TP+FN)
+    F1 = 2*recall*precision/(recall+precision)
+    print("\n\n"+"*"*10+" {} ".format(name)+"*"*10)
     print("预测样本数为{}. \nAUC为{:.4f}".format(len(ytrue),roc_auc))
     print("准确率accuracy为{:.3f}%".format((con_max[1,1]+con_max[0,0])/len(ytrue)*100))
-    print("第一类错误样本有{},第一类错误率为{:.3f}%".format(type1error,type1error/len(ytrue)*100))
-    print("第二类错误样本有{},第二类错误率为{:.3f}%".format(type2error,type2error/len(ytrue)*100))
+    print("第一类错误样本有{},第一类错误率为{:.3f}%".format(FN,FN/(FN+TP)*100))
+    print("第二类错误样本有{},第二类错误率为{:.3f}%".format(FP,FP/(FP+TN)*100))
+    print("精确率precisoin为{:.3f}%,召回率recall为{:.3f}%，F1为{:.3}% \n".format(recall*100,precision*100,F1*100))
+    print("TP:{}\tTN:{},FN:{},FP:{}\n".format(TP,TN,FN,FP))
     
     #绘制roc曲线
     plot_roc(ytrue,yproba,name)
