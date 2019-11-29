@@ -56,7 +56,7 @@ def print_analyse(ytrue,yproba,name):
 #    F1 = 2*recall*precision/(recall+precision)
     F2 = 5*recall*precision/(recall+4*precision)
     print("\n\n"+"*"*10+" {} ".format(name)+"*"*10)
-    print("预测样本数为{}. \nAUC为{:.4f}".format(len(ytrue),roc_auc))
+    print("预测样本数为{}. \nAUC为{:.4f}.\n截断阈值为{:.3f}".format(len(ytrue),roc_auc,threshold))
     print("准确率accuracy为{:.3f}%".format((con_max[1,1]+con_max[0,0])/len(ytrue)*100))
     print("第一类错误样本有{},第一类错误率为{:.3f}%".format(FN,FN/(FN+TP)*100))
     print("第二类错误样本有{},第二类错误率为{:.3f}%".format(FP,FP/(FP+TN)*100))

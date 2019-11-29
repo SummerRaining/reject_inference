@@ -21,7 +21,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.base import BaseEstimator, TransformerMixin, RegressorMixin, clone
 from sklearn.ensemble import GradientBoostingClassifier,ExtraTreesClassifier,AdaBoostClassifier,RandomForestClassifier
 from dataset import dataset
-from util import print_analyse,plot_four_roc
+from util import print_analyse,plot_four_roc,find_best_threshold
 
 class ml_model(object):
     '''
@@ -300,13 +300,14 @@ if __name__ == '__main__':
                   model_names = ['random forest','xgboost','gbdt','stacking model'],\
                   name = "ROC curve based on the accepted")
     
+    #预测样本
+    threshold = find_best_threshold(y_test,stack_probas)
+    reject_probas = stack_model.predict_proba(reject_sample.values[:,2:])[:,1]
+    reject_predict = np.array(reject_probas>threshold,dtype = np.int32)
+    pickle.dump(reject_predict,open("../intermediate/reject_predict",'wb'))
+    print(np.sum(reject_predict))
+    
 # =============================================================================
-#     #预测样本
-#     reject_probas = stack_model.predict_proba(reject_sample.values[:,2:])[:,1]
-#     reject_predict = np.array(reject_probas>0.5,dtype = np.int32)
-#     pickle.dump(reject_predict,open("../intermediate/reject_predict",'wb'))
-#     print(np.sum(reject_predict))
-#     
 #     import matplotlib
 #     matplotlib.use("Qt5Agg")
 #     import matplotlib.pyplot as plt
