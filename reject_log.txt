@@ -1,0 +1,90 @@
+
+ load data from ../intermediate/washed_data.pkl
+X_train shape is (95700, 2000)
+y_train shape is (95700,)
+X_test shape is (4300, 2000)
+y_test shape is (4300,)
+loading model from file
+
+
+********** reject_lightgbm **********
+预测样本数为4300. 
+AUC为0.7984.
+截断阈值为0.470
+准确率accuracy为66.581%
+第一类错误样本有82,第一类错误率为19.070%
+第二类错误样本有1355,第二类错误率为35.013%
+精确率precisoin为20.435%,召回率recall为80.930%，F2为50.8% 
+
+TP:348	TN:2515,FN:82,FP:1355
+
+loading model from file
+
+
+********** reject_adaboost **********
+预测样本数为4300. 
+AUC为0.7924.
+截断阈值为0.500
+准确率accuracy为68.488%
+第一类错误样本有109,第一类错误率为25.349%
+第二类错误样本有1246,第二类错误率为32.196%
+精确率precisoin为20.485%,召回率recall为74.651%，F2为48.8% 
+
+TP:321	TN:2624,FN:109,FP:1246
+
+loading model from file
+
+
+********** reject_gbdt **********
+预测样本数为4300. 
+AUC为0.7958.
+截断阈值为0.520
+准确率accuracy为68.628%
+第一类错误样本有92,第一类错误率为21.395%
+第二类错误样本有1257,第二类错误率为32.481%
+精确率precisoin为21.191%,召回率recall为78.605%，F2为51.0% 
+
+TP:338	TN:2613,FN:92,FP:1257
+
+loading model from file
+
+
+********** reject_rf **********
+预测样本数为4300. 
+AUC为0.7420.
+截断阈值为0.420
+准确率accuracy为61.605%
+第一类错误样本有105,第一类错误率为24.419%
+第二类错误样本有1546,第二类错误率为39.948%
+精确率precisoin为17.370%,召回率recall为75.581%，F2为45.3% 
+
+TP:325	TN:2324,FN:105,FP:1546
+
+loading model from file
+
+
+********** reject_xgboost **********
+预测样本数为4300. 
+AUC为0.7994.
+截断阈值为0.510
+准确率accuracy为68.023%
+第一类错误样本有86,第一类错误率为20.000%
+第二类错误样本有1289,第二类错误率为33.307%
+精确率precisoin为21.066%,召回率recall为80.000%，F2为51.3% 
+
+TP:344	TN:2581,FN:86,FP:1289
+
+start fitting stacking model!
+
+
+********** reject_stacking **********
+预测样本数为4300. 
+AUC为0.7962.
+截断阈值为0.510
+准确率accuracy为69.302%
+第一类错误样本有92,第一类错误率为21.395%
+第二类错误样本有1228,第二类错误率为31.731%
+精确率precisoin为21.584%,召回率recall为78.605%，F2为51.4% 
+
+TP:338	TN:2642,FN:92,FP:1228
+
