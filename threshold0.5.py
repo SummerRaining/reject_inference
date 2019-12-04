@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Created on Tue Dec  3 21:58:08 2019
+
+@author: tunan
+"""
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
 Created on Thu Nov 28 11:00:00 2019
 
 @author: tunan
@@ -30,11 +38,11 @@ class fit_ml_model(object):
         self.base_model = base_model   #未拟合前的模型。
         
         self.log_path = "../log/{}_config.json".format(name)   #最优参数的存储地址。
-        self.model_path = "../reject_models/{}_model".format(name)    #模型地址修改，reject_models
+        self.model_path = "../reject0.5_models/{}_model".format(name)    #模型地址修改，reject_models
         self.name = name
         
-        if not os.path.exists("../reject_models"):
-            os.mkdir("../reject_models")
+        if not os.path.exists("../reject0.5_models"):
+            os.mkdir("../reject0.5_models")
             
     def load_model_with_params(self):
         #读取文件中的最优参数，并返回设置好参数的模型
@@ -73,10 +81,10 @@ class fit_ml_model(object):
     
     def _print_analyse(self,x_test,y_test,save_img = False):
         y_pred = self.predict_proba(x_test)
-        print_analyse(y_test,y_pred[:,1],name = "reject_"+self.name) 
+        print_analyse(y_test,y_pred[:,1],name = "reject0.5_"+self.name) 
             
 if __name__ == "__main__":
-    reject_predict = pickle.load(open("../intermediate/reject_predict",'rb'))
+    reject_predict = pickle.load(open("../intermediate/reject0.5_predict",'rb'))
     data = dataset()
     accept_sample,validation,reject_sample = data.run()
     
@@ -125,7 +133,7 @@ if __name__ == "__main__":
     #stacking 提升法
     base_model = [gbdt_model.load_model_with_params(),rf_model.load_model_with_params(),xgb_model.load_model_with_params()]
     meta_model = make_pipeline(RobustScaler(),LogisticRegression(random_state=1,penalty = 'l2',solver = 'saga',max_iter = 100))
-    stack_model = StackingAveragedModels(base_models=base_model,meta_model=meta_model,name = 'reject_stacking')
+    stack_model = StackingAveragedModels(base_models=base_model,meta_model=meta_model,name = 'reject0.5_stacking')
     stack_model.fit(X_train,y_train)
     stack_model._print_analyse(X_test,y_test)
     
@@ -135,7 +143,6 @@ if __name__ == "__main__":
     gbdt_probas = gbdt_model.predict_proba(X_test)[:,1]
     ada_probas = ada_model.predict_proba(X_test)[:,1]
     stack_probas = stack_model.predict_proba(X_test)[:,1]
-    
     plot_four_roc(y_test,[rf_probas,xgb_probas,ada_probas,stack_probas],\
                   model_names = ['random forest','xgboost','gbdt','stacking model'],\
-                  name = "ROC curve based on the rejected")
+                  name = "ROC curve based on the hard rejected")

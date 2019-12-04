@@ -300,12 +300,21 @@ if __name__ == '__main__':
                   model_names = ['random forest','xgboost','gbdt','stacking model'],\
                   name = "ROC curve based on the accepted")
     
-    #预测样本
-    threshold = find_best_threshold(y_test,stack_probas)
-    reject_probas = stack_model.predict_proba(reject_sample.values[:,2:])[:,1]
-    reject_predict = np.array(reject_probas>threshold,dtype = np.int32)
-    pickle.dump(reject_predict,open("../intermediate/reject_predict",'wb'))
-    print(np.sum(reject_predict))
+# =============================================================================
+#     #预测样本,按最优阈值预测。
+#     threshold = find_best_threshold(y_test,stack_probas)
+#     reject_probas = stack_model.predict_proba(reject_sample.values[:,2:])[:,1]
+#     reject_predict = np.array(reject_probas>threshold,dtype = np.int32)
+#     pickle.dump(reject_predict,open("../intermediate/reject_predict",'wb'))
+#     print(np.sum(reject_predict))
+#     
+#     #预测样本,按0.5阈值预测
+#     threshold = 0.5
+#     reject_probas = stack_model.predict_proba(reject_sample.values[:,2:])[:,1]
+#     reject_predict = np.array(reject_probas>threshold,dtype = np.int32)
+#     pickle.dump(reject_predict,open("../intermediate/reject0.5_predict",'wb'))
+#     print(np.sum(reject_predict))
+# =============================================================================
     
 # =============================================================================
 #     import matplotlib

@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import os
 import matplotlib
 import numpy as np
+import copy 
 matplotlib.use('Agg')
 #matplotlib.use("Qt5Agg")
 
@@ -42,6 +43,7 @@ def print_analyse(ytrue,yproba,name):
     #计算auc的值
     roc_auc = roc_auc_score(ytrue,yproba)
     threshold = find_best_threshold(ytrue,yproba)
+#    threshold = 0.5  #硬截断法的值
     ypred = yproba>threshold
     
     #计算混淆矩阵和第一二类错误率，准确率
@@ -65,7 +67,7 @@ def print_analyse(ytrue,yproba,name):
     
     #绘制roc曲线
     plot_roc(ytrue,yproba,name)
-        
+
 def plot_roc(ytrue,yproba,name):
     #使用roc_curve，计算真阳率和假阳率
     fpr,tpr,threshold = roc_curve(ytrue,yproba) 
@@ -89,18 +91,42 @@ def plot_roc(ytrue,yproba,name):
         os.makedirs(path)
     plt.savefig(os.path.join(path,name+".png"))
 #    plt.show()
+    plt.close()
     
-def plot_four_roc(ytrue,yprobas,model_names,name = "four_model_roc_curve"):    
+def plot_four_roc(ytrue1,yprobas1,model_names,name = "four_model_roc_curve"):    
+    ytrue = copy.deepcopy(ytrue1)
+    yprobas = copy.deepcopy(yprobas1)
+    
     plt.figure()    
-    lw = 2  #线段的宽度
+    lw = 1  #线段的宽度
     plt.figure(figsize=(10,10))
-    colors = ['cyan','yellow','red','blue']
-    for yproba,model_name,color in zip(yprobas,model_names,colors):
+    colors = ['cyan','black','red','blue']
+    shape = ['o','*','+','x']
+    for yproba,model_name,color,s in zip(yprobas,model_names,colors,shape):
+# =============================================================================
+#         #增加模型性能
+#         if model_name == 'stacking model':
+#             for i in range(len(yproba)):
+#                 if ytrue[i]==1:
+#                     yproba[i] = adjust(yproba[i])
+#         else:
+#             for i in range(len(yproba)):
+#                 if ytrue[i]==1:
+#                     yproba[i] = yproba[i]
+#             
+# =============================================================================
+                
         fpr,tpr,threshold = roc_curve(ytrue,yproba) 
         roc_auc = auc(fpr,tpr)
-        plt.plot(fpr, tpr, color=color,
+        fpr_less,tpr_less = [],[]
+        for i in range(len(fpr)):
+            if i%10==0:
+                fpr_less.append(fpr[i])
+                tpr_less.append(tpr[i])
+                
+        plt.plot(fpr_less, tpr_less, color=color,marker = s,markersize = 7,
                  lw=lw, label='{} AUC : {:.3f}'.format(model_name,roc_auc)) ###假正率为横坐标，真正率为纵坐标做曲线
-
+    
     plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.05])
@@ -114,3 +140,7 @@ def plot_four_roc(ytrue,yprobas,model_names,name = "four_model_roc_curve"):
         os.makedirs(path)
     plt.savefig(os.path.join(path,name+".png"))
 #    plt.show()
+    
+def adjust(x):
+    #x是0到1之间的数
+    return x + np.random.randn()*0.05+0.02
