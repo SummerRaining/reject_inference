@@ -1,0 +1,7 @@
+1. 树形模型的默认参数，max_depth,learning_rate,n_estimators,subsample。其中默认参数写在括号中，调参出来的参数写在=后面。
+2. xgboost:max_depth(6)=10,learning_rate(0.3)=0.1,n_estimators(100)=400,subsample(1.0)=0.904
+3. lightgbm:max_depth(无限制)=14,learning_rate(0.1)=0.027,n_estimators(100)=496,subsample(1.0)=0.763
+4. gbdt:max_depth(3)=6,learning_rate(0.1)=0.061,n_estimator(100)=180,subsample(1.0)=0.998
+4. random_forest:max_depth(无限制)=5,learning_rate(没有这个参数),n_estimators(100)=100,subsample(没有这个参数).
+
+

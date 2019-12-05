@@ -8,6 +8,8 @@
 5. 混淆矩阵在reject_log.txt,accept_log.txt,hard_reject_log.txt文件中有记载。
 	1. 例如TP:81，TN:3705,FN:349,FP:165.即代表true positive真阳，true negetive 真阴，false negative 假阴，false positive假阳
 
+6. parameter.txt记载了树形模型的模型参数和调参后的结果。
+
 
 
 
